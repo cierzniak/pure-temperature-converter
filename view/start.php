@@ -14,5 +14,21 @@
         <- pogrubiona wiadomość przekazana ze zmiennej 'msg' w tablicy
         parametrów.
     </p>
+    <br/>
+    <hr/>
+    <br/>
+    <?php echo $temp_c; ?>
+    to
+    <?php echo sprintf(
+        '%s (wartość: %s, jednostka: %s)',
+        $temp_k,
+        $temp_k->getTemperature(),
+        $temp_k->getUnit()->getUnit()
+    ); ?>
+    <hr/>
+    <h4>Czasem warto sobie wyświetlić wszystkie dodatkowe informacje:</h4>
+    <pre>
+<?php var_dump($msg, $temp_c, $temp_k); ?>
+    </pre>
 </body>
 </html>
