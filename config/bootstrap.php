@@ -6,13 +6,16 @@ $projectPath = dirname(__DIR__);
 $srcPath = "{$projectPath}/src";
 // Znajdź wszystkie pliki z rozszerzeniem php w folderze /src
 $srcFiles = glob("{$srcPath}/**/*.php");
+// Pliki są ładowane w kolejności alfabetycznej, bez tych linii konwertery są
+//  ładowane po fabryce strategii.
+include "{$srcPath}/converter/strategies/TemperatureConverterInterface.php";
+include "{$srcPath}/converter/strategies/KelvinConverter.php";
+include "{$srcPath}/converter/strategies/CelsiusConverter.php";
 // Zaimportuj je dynamicznie
 //  (hack, ale przynajmniej nie każe pamiętać o tym smutnym obowiązku)
 foreach ($srcFiles as $file) {
     include_once $file;
 }
-// W zastępstwie za linijki 8-13 można pisać dla każdego utworzonego pliku:
-//include "{$srcPath}/tutajNazwaFolderu/TutajNazwaKlasy.php";
 
 // Inicjowanie i dodanie folderu z widokami do ViewManagera
 ViewManager::getInstance()->addTemplatesDirectory("{$projectPath}/view");

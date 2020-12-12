@@ -30,5 +30,19 @@
     <pre>
 <?php var_dump($msg, $temp_c, $temp_k); ?>
     </pre>
+    <hr/>
+    <h4>Porównanie obiektów:</h4>
+    <h5>Obiekt porównany do obiektu poprzez == <i>(porównanie do wartości)</i></h5>
+    <pre>
+<?php var_dump(TemperatureUnit::kelwin() == TemperatureUnit::kelwin()); ?>
+    </pre>
+    <h5>Obiekt porównany do obiektu poprzez === <i>(porównanie do wartości i typu)</i></h5>
+    <pre>
+<?php var_dump(TemperatureUnit::kelwin() === TemperatureUnit::kelwin()); ?>
+    </pre>
+    <h5>Obiekt porównany do obiektu poprzez metodę <b>equal()</b> wewnątrz obiektu</h5>
+    <pre>
+<?php var_dump(TemperatureUnit::kelwin()->equals(TemperatureUnit::kelwin())); ?>
+    </pre>
 </body>
 </html>

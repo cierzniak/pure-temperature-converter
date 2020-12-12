@@ -56,6 +56,17 @@ final class TemperatureUnit
         return self::UNITS[$this->unit];
     }
 
+    /**
+     * Niniejsza metoda jest bardzo sprytnym sposobem na porównywanie obiektów.
+     *  Porównywanie obiektów odbywa się na podstawie ich lokalizacji w pamięci,
+     *  więc są tożsame dla ==, ale różne dla ===.
+     * @see https://www.php.net/manual/en/language.oop5.object-comparison.php
+     */
+    public function equals(self $compare): bool
+    {
+        return $this->unit === $compare->unit;
+    }
+
     private static function validate(string $unit): void
     {
         // Sprawdź czy podana jednostka znajduje się na liście kluczy w tabeli
