@@ -17,6 +17,8 @@
  */
 final class Temperature
 {
+    private const PRINT_PRECISION = 2;
+
     private $temperature;
     private $unit;
 
@@ -28,7 +30,9 @@ final class Temperature
 
     public function __toString(): string
     {
-        return "{$this->temperature} {$this->unit->getPrintableUnit()}";
+        $temp = round($this->temperature, self::PRINT_PRECISION);
+
+        return "{$temp} {$this->unit->getPrintableUnit()}";
     }
 
     public function getTemperature(): float
