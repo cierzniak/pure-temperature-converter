@@ -16,6 +16,7 @@ final class TemperatureUnit
     private const UNITS = [
         'K' => 'K',
         'C' => '&deg;C',
+        'F' => '&deg;F',
     ];
 
     private $unit;
@@ -38,19 +39,24 @@ final class TemperatureUnit
         return new TemperatureUnit('C');
     }
 
+    public static function fahrenheit(): self
+    {
+        return new self('F');
+    }
+
     public function __construct(string $unit)
     {
         self::validate($unit);
         $this->unit = $unit;
     }
 
-    // To zwróci klucz (K, C)
+    // To zwróci klucz (K, C, ...)
     public function getUnit(): string
     {
         return $this->unit;
     }
 
-    // To zwróci jednostkę do wyświetlenia użytkownikowi (K, oC)
+    // To zwróci jednostkę do wyświetlenia użytkownikowi (K, oC, ...)
     public function getPrintableUnit(): string
     {
         return self::UNITS[$this->unit];

@@ -22,6 +22,7 @@ final class TemperatureConverterContext
          */
         KelvinConverter::class,
         CelsiusConverter::class,
+        FahrenheitConverter::class,
     ];
 
     /**

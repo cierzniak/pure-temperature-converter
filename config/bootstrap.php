@@ -11,6 +11,7 @@ $srcFiles = glob("{$srcPath}/**/*.php");
 include "{$srcPath}/converter/strategies/TemperatureConverterInterface.php";
 include "{$srcPath}/converter/strategies/KelvinConverter.php";
 include "{$srcPath}/converter/strategies/CelsiusConverter.php";
+include "{$srcPath}/converter/strategies/FahrenheitConverter.php";
 // Zaimportuj je dynamicznie
 //  (hack, ale przynajmniej nie każe pamiętać o tym smutnym obowiązku)
 foreach ($srcFiles as $file) {
