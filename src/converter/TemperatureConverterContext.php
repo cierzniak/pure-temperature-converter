@@ -32,6 +32,9 @@ final class TemperatureConverterContext
     public static function convert(Temperature $base, TemperatureUnit $target): Temperature
     {
         $kelvin = self::toBase($base);
+        if ($kelvin->getTemperature() < 0) {
+            throw new BelowAbsoluteZeroException();
+        }
 
         return self::toTarget($kelvin, $target);
     }
