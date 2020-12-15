@@ -72,7 +72,7 @@ final class TemperatureUnit
         // Sprawdź czy podana jednostka znajduje się na liście kluczy w tabeli
         if (!array_key_exists($unit, self::UNITS)) {
             // Jeżeli nie istnieje, rzuć wyjątkiem
-            throw new RuntimeException('Wrong temperature unit');
+            throw new WrongTemperatureUnitException();
         }
     }
 }

@@ -10,7 +10,7 @@ final class KelvinConverter implements TemperatureConverterInterface
     public static function toKelvin(Temperature $temperature): Temperature
     {
         if (!self::unit(TemperatureUnit::kelwin())) {
-            throw new RuntimeException('Tried to convert from wrong unit');
+            throw new WrongTemperatureUnitException();
         }
 
         return $temperature;
@@ -19,7 +19,7 @@ final class KelvinConverter implements TemperatureConverterInterface
     public static function fromKelvin(Temperature $temperature): Temperature
     {
         if (!self::unit(TemperatureUnit::kelwin())) {
-            throw new RuntimeException('Tried to convert from wrong unit');
+            throw new WrongTemperatureUnitException();
         }
 
         return $temperature;
