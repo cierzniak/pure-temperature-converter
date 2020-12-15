@@ -2,12 +2,33 @@
 
 include __DIR__ . '/../config/bootstrap.php';
 
-$celsius = new Temperature(17.3, TemperatureUnit::celsius());
-$kelvin = TemperatureConverterContext::convert($celsius, TemperatureUnit::kelwin());
+$availableTemperatures = [
+    'C' => 'stopnie Celsjusza',
+    'F' => 'stopnie Fahrenheita',
+    'K' => 'Kelwin',
+];
+$formData = [
+    'baseUnit' => $_GET['b'] ?? null,
+    'baseValue' => isset($_GET['v']) ? (float)$_GET['v'] : null,
+    'targetUnit' => $_GET['t'] ?? null,
+];
+$formViolations = [];
+
+if ($formData['baseUnit'] && $formData['baseValue'] !== null && $formData['targetUnit']) {
+    try {
+        $base = new Temperature($formData['baseValue'], new TemperatureUnit($formData['baseUnit']));
+        $target = TemperatureConverterContext::convert($base, new TemperatureUnit($formData['targetUnit']));
+    } catch (BelowAbsoluteZeroException $e) {
+        $formViolations[] = 'Temperatura poniżej zera absolutnego';
+    } catch (WrongTemperatureUnitException $e) {
+        $formViolations[] = 'Błędna jednostka konwersji';
+    }
+}
 
 ViewManager::getInstance()->render('start', [
-    'msg' => 'Hello world!',
-    // Nie ma konwertera temperatur, dlatego ręcznie wprowadzono wartości
-    'temp_c' => $celsius,
-    'temp_k' => $kelvin,
+    'available' => $availableTemperatures,
+    'form' => $formData,
+    'violations' => $formViolations,
+    'conversionFrom' => $base ?? null,
+    'conversionTo' => $target ?? null,
 ]);
